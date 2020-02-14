@@ -5,7 +5,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-
+require('./models/User');
 // User >—UQ—< Quiz >- Questions -< Answers/Options
 //                                             |
 //                                             ^
