@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 const app = express()
 const port_number = process.env.PORT || 9000;
 app.use(express.json())
+require('./models/User');
 require('dotenv').config()
-// this gives us access to the .env variables
+// ^ gives us access to the .env variables
 
 
 // ------------ ESTABLISHING CONNECTION TO CLOUD DB --------------
@@ -18,11 +19,10 @@ db.on('error', error => console.log(error))
 db.once('open', () => console.log('Database Connected'))
 
 
-// require('./models/User');
 // User >—UQ—< Quiz >- Questions -< Answers/Options
 //                                             |
 //                                             ^
-//                                          Explanation
+//                                      Explanation
 
 
 app.get(`/`, (req, res) => {
