@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.set('debug', true);
-
-// console.log(mongoose);
 
 // Step 1: build User Schema
 

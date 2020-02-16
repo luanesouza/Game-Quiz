@@ -2,10 +2,12 @@ const express = require('express')
 var mongoose = require('mongoose');
 const app = express()
 const port_number = process.env.PORT || 9000;
-app.use(express.json())
-require('./models/User');
+const userRoute = require('./routers/userRouter')
+require('./models/UserModel');
 require('dotenv').config()
 // ^ gives us access to the .env variables
+
+app.use(express.json())
 
 
 // ------------ ESTABLISHING CONNECTION TO CLOUD DB --------------
@@ -25,14 +27,7 @@ db.once('open', () => console.log('Database Connected'))
 //                                      Explanation
 
 
-app.get(`/`, (req, res) => {
-  res.status(200).json({
-    message: 'It works'
-  })
-})
 
-const userRoute = require('./routers/userRouter')
-
-app.use('/users', userRoute)
+app.use('/', userRoute)
 
 app.listen(port_number, () => console.log(`Server Listening on ${port_number}`))

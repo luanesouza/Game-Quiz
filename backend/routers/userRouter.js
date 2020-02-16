@@ -1,23 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User')
+const app = express()
+const User = require('../models/UserModel')
 
 
 // get all
-router.get('/', async (req, res) => {
-  console.log(User);
+router.get('/users', async (req, res) => {
+  // res.send('hello')
+  const users = await User.find({})
   try {
-    const users = await User.find()
-    console.log('here are the users', users);
-    res.json(users)
+    res.send(users)
+
   } catch(err) {
-    res.status(500).json({message: err.message})
+    res.status(500).send(err)
   }
 
 })
 
 // get one
-router.get('/:id', (req, res) => {
+router.get('/users/:id', (req, res) => {
   try {
     res.send(req.params.id)
 
@@ -27,7 +28,7 @@ router.get('/:id', (req, res) => {
 })
 
 // adding one
-router.post('/', async (req, res) => {
+router.post('/users', async (req, res) => {
   const user = new User({
     name: 'Lilly'
   })
@@ -40,7 +41,7 @@ router.post('/', async (req, res) => {
 })
 
 // updating one. The reason why we wanna use patch instead of put is because put will update the entire instance, instead of only the attributes we want to update
-router.patch('/:id', (req, res) => {
+router.patch('/users/:id', (req, res) => {
   try {
     res.send('update user')
 
@@ -52,7 +53,7 @@ router.patch('/:id', (req, res) => {
 
 // deleting one
 
-router.delete('/:id', (req, res) => {
+router.delete('/users/:id', (req, res) => {
   try {
 
   } catch(e) {
