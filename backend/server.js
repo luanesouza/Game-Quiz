@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 const app = express()
 const port_number = process.env.PORT || 9000;
 const userRoute = require('./routers/userRouter')
+const quizRoute = require('./routers/quizRouter')
 require('./models/UserModel');
 require('dotenv').config()
 // ^ gives us access to the .env variables
@@ -29,5 +30,6 @@ db.once('open', () => console.log('Database Connected'))
 
 
 app.use('/', userRoute)
+app.use('/', quizRoute)
 
 app.listen(port_number, () => console.log(`Server Listening on ${port_number}`))
