@@ -26,7 +26,6 @@ const createUserData = async (userData) => {
 const createQuizData = async (quizData) => {
   try {
     let newQuiz = await axios.post(URL_QUIZ, quizData)
-    console.log(quizData);
     return newQuiz
   } catch(e) {
     console.error(e.message);
