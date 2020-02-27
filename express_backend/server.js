@@ -22,12 +22,10 @@ db.on('error', error => console.log(error))
 db.once('open', () => console.log('Database Connected'))
 
 
-// User >—UQ—< Quiz >- Questions -< Answers/Options
+// User >—< Quiz >- Questions -< Answers/Options
 //                                             |
 //                                             ^
 //                                      Explanation
-
-
 
 app.use('/', userRoute)
 app.use('/', quizRoute)
